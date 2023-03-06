@@ -12,21 +12,21 @@ export default function HTML(props) {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         {props.headComponents}
-        <script type="text/javascript">
-          (function() {
-            window._uxa = window._uxa || [];
-            if (typeof CS_CONF === 'undefined') {
-              window._uxa.push(['setPath', window.location.pathname + window.location.hash.replace('#', '?__')]);
-              var mt = document.createElement("script");
-              mt.type = "text/javascript";
-              mt.async = true;
-              mt.src = "//t.contentsquare.net/uxa/YOUR_TAG_ID.js";
-              document.getElementsByTagName("head")[0].appendChild(mt);
-            } else {
-              window._uxa.push(['trackPageview', window.location.pathname + window.location.hash.replace('#', '?__')]);
-            }
-          })();
-        </script>
+        <script type="text/javascript" dangerouslySetInnerHTML={{
+          __html: `(function() {
+              window._uxa = window._uxa || [];
+              if (typeof CS_CONF === 'undefined') {
+                window._uxa.push(['setPath', window.location.pathname + window.location.hash.replace('#', '?__')]);
+                var mt = document.createElement("script");
+                mt.type = "text/javascript";
+                mt.async = true;
+                mt.src = "//t.contentsquare.net/uxa/YOUR_TAG_ID.js";
+                document.getElementsByTagName("head")[0].appendChild(mt);
+              } else {
+                window._uxa.push(['trackPageview', window.location.pathname + window.location.hash.replace('#', '?__')]);
+              }
+            })();`,
+          }} />
       </head>
       <body {...props.bodyAttributes}>
         {props.preBodyComponents}
